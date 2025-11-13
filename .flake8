@@ -1,0 +1,14 @@
+# Fichier .flake8
+[flake8]
+# Ignorer les erreurs que black gère
+ignore = E203, E266, E501, W503, F401, F403
+
+# Longueur de ligne de Black (défaut 88)
+max-line-length = 88
+
+# Fichiers à ignorer
+exclude =
+    .git,
+    __pycache__,
+    venv,
+    */migrations/*

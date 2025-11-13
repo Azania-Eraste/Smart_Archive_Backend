@@ -1,0 +1,27 @@
+# Fichier .pre-commit-config.yaml
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+    -   id: trailing-whitespace  # Enlève les espaces en fin de ligne
+    -   id: end-of-file-fixer    # Assure une ligne vide à la fin du fichier
+    -   id: check-yaml           # Vérifie la syntaxe des fichiers YAML
+    -   id: check-added-large-files
+
+-   repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+    -   id: black
+        language_version: python3.13 # Assurez-vous que cela correspond à votre version
+
+-   repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+    -   id: isort
+        name: isort (python)
+        args: ["--profile", "black"] # Pour être compatible avec black
+
+-   repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+    -   id: flake8
