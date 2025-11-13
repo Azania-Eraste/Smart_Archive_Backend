@@ -4,7 +4,7 @@ from django.db import models
 
 # On importe les modèles des autres applications
 from comptes.models import Parent
-from etablissement.models import Classe
+from etablissement.models import AnneeScolaire, Classe
 
 # --- 1. Modèle Eleve ---
 # C'est l'entité centrale de l'archivage.
@@ -69,7 +69,13 @@ class Document(models.Model):
         max_length=50, choices=TypeDocument.choices, default=TypeDocument.AUTRE
     )
 
-    annee_scolaire = models.CharField(max_length=9, blank=True)  # ex: "2024-2025"
+    annee_scolaire = models.ForeignKey(
+        AnneeScolaire,
+        on_delete=models.SET_NULL,  # Si on supprime l'année, on garde le doc mais sans année
+        null=True,
+        blank=True,
+        related_name="documents",
+    )
 
     # Le fichier lui-même
     # 'uploads/documents/' sera le dossier où les fichiers sont stockés

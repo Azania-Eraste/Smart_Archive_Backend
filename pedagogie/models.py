@@ -6,7 +6,7 @@ from comptes.models import Professeur
 
 # On importe les modèles des autres applications
 from dossiers.models import Eleve
-from etablissement.models import Classe, Enseignement, Matiere
+from etablissement.models import AnneeScolaire, Classe, Enseignement, Matiere
 
 # --- 1. Modèle Evaluation ---
 # Définit un devoir, un examen ou une interrogation
@@ -65,7 +65,9 @@ class Note(models.Model):
 class Bulletin(models.Model):
     eleve = models.ForeignKey(Eleve, on_delete=models.CASCADE, related_name="bulletins")
     trimestre = models.PositiveIntegerField()  # 1, 2, ou 3
-    annee_scolaire = models.CharField(max_length=9)  # ex: "2024-2025"
+    annee_scolaire = models.ForeignKey(
+        AnneeScolaire, on_delete=models.PROTECT, related_name="bulletins"
+    )
 
     moyenne_generale = models.DecimalField(
         max_digits=5, decimal_places=2, null=True, blank=True

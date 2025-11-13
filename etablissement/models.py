@@ -38,6 +38,34 @@ class Niveau(models.Model):
         return self.nom
 
 
+# Ceci remplace tous les CharField "annee_scolaire"
+class AnneeScolaire(models.Model):
+    libelle = models.CharField(
+        max_length=9, unique=True, help_text="Format: YYYY-YYYY (ex: 2024-2025)"
+    )
+    date_debut = models.DateField()
+    date_fin = models.DateField()
+
+    # C'est la fonctionnalité bonus :
+    # Vous pouvez marquer une année comme "active"
+    # pour que l'application s'ouvre dessus par défaut.
+    est_active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["-date_debut"]  # Toujours montrer la plus récente en premier
+
+    def __str__(self):
+        return self.libelle
+
+    def save(self, *args, **kwargs):
+        # Si on active cette année, on désactive les autres
+        if self.est_active:
+            AnneeScolaire.objects.filter(est_active=True).exclude(pk=self.pk).update(
+                est_active=False
+            )
+        super().save(*args, **kwargs)
+
+
 # --- 1. Modèle Ecole (MODIFIÉ) ---
 # Hérite maintenant de AdresseModel
 class Ecole(AdresseModel):
