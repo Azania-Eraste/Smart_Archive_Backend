@@ -11,23 +11,32 @@ from django.db import models
 # Django a besoin d'un "Manager" pour savoir COMMENT créer des utilisateurs et des super-utilisateurs.
 
 
+# comptes/models.py
+
+
 class UtilisateurManager(BaseUserManager):
     """Manager pour le modèle Utilisateur."""
 
-    def create_user(self, email, nom, prenom, mot_de_passe=None, **extra_fields):
+    # CORRECTION : on utilise 'password' au lieu de 'mot_de_passe'
+    def create_user(self, email, nom, prenom, password=None, **extra_fields):
         """Crée et sauvegarde un nouvel utilisateur."""
         if not email:
             raise ValueError("L'utilisateur doit avoir une adresse email.")
 
         email = self.normalize_email(email)
         utilisateur = self.model(email=email, nom=nom, prenom=prenom, **extra_fields)
-        utilisateur.set_password(mot_de_passe)
+        # On utilise la variable 'password'
+        utilisateur.set_password(password)
         utilisateur.save(using=self._db)
         return utilisateur
 
-    def create_superuser(self, email, nom, prenom, mot_de_passe):
+    # CORRECTION : on utilise 'password' ici aussi
+    def create_superuser(self, email, nom, prenom, password=None, **extra_fields):
         """Crée et sauvegarde un super-utilisateur."""
-        utilisateur = self.create_user(email, nom, prenom, mot_de_passe)
+        # On transmet 'password' à create_user
+        utilisateur = self.create_user(
+            email, nom, prenom, password=password, **extra_fields
+        )
         utilisateur.is_staff = True
         utilisateur.is_superuser = True
         utilisateur.save(using=self._db)

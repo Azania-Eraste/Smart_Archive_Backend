@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "jazzmin",
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
@@ -141,3 +142,76 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "comptes.Utilisateur"
+
+
+# Jazzmin Configuration
+
+
+JAZZMIN_SETTINGS = {
+    # Titre de la fenêtre
+    "site_title": "SmartArchive Admin",
+    # Titre sur l'écran de connexion
+    "site_header": "SmartArchive",
+    # Logo (placez un fichier 'logo.png' dans votre dossier static si vous en avez un)
+    # "site_logo": "img/logo.png",
+    # Message de bienvenue sur l'écran de login
+    "welcome_sign": "Bienvenue sur SmartArchive",
+    # Copyright en bas de page
+    "copyright": "IIT School of Engineering",
+    # Menu latéral (Avatar de l'utilisateur)
+    "user_avatar": None,
+    # --- Personnalisation du Menu ---
+    # Ordre des applications dans le menu latéral
+    "order_with_respect_to": [
+        "comptes",
+        "inscriptions",
+        "dossiers",
+        "pedagogie",
+        "etablissement",
+    ],
+    # Icônes pour vos applications (FontAwesome 5)
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "comptes.Utilisateur": "fas fa-user",
+        "comptes.Professeur": "fas fa-chalkboard-teacher",
+        "comptes.Educateur": "fas fa-user-tie",
+        "etablissement.Ecole": "fas fa-university",
+        "etablissement.Classe": "fas fa-layer-group",
+        "etablissement.Matiere": "fas fa-book",
+        "etablissement.AnneeScolaire": "fas fa-calendar-alt",
+        "dossiers.Eleve": "fas fa-user-graduate",
+        "dossiers.Document": "fas fa-file-archive",
+        "inscriptions.Inscription": "fas fa-file-signature",
+        "pedagogie.Evaluation": "fas fa-pen-alt",
+        "pedagogie.Note": "fas fa-star",
+        "pedagogie.Bulletin": "fas fa-file-invoice",
+    },
+}
+
+# Configuration de l'interface utilisateur (Couleurs)
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-primary",
+    "accent": "accent-primary",
+    "navbar": "navbar-dark",
+    "no_navbar_border": False,
+    "navbar_fixed": False,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "theme": "flatly",  # Thème moderne et propre
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
+}
