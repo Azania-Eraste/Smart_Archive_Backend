@@ -4,7 +4,6 @@ from rest_framework import serializers
 
 from .models import (  # Si Eleve est dans comptes, sinon ajustez
     Educateur,
-    Eleve,
     Parent,
     Professeur,
 )
