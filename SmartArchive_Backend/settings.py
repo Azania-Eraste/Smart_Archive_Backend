@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
+    "django_filters",
     "comptes.apps.ComptesConfig",
     "etablissement.apps.EtablissementConfig",
     "dossiers.apps.DossiersConfig",
