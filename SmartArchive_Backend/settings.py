@@ -160,6 +160,7 @@ JAZZMIN_SETTINGS = {
     "copyright": "IIT School of Engineering",
     # Menu latéral (Avatar de l'utilisateur)
     "user_avatar": None,
+    "navigation_expanded": False,
     # --- Personnalisation du Menu ---
     # Ordre des applications dans le menu latéral
     "order_with_respect_to": [
