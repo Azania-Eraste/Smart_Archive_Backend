@@ -7,8 +7,9 @@ from django.urls import include, path
 urlpatterns = [
     path("admin/", admin.site.urls),
     # --- NOS API ---
-    path("api/v1/comptes/", include("comptes.urls")),
-    path("api/v1/etablissement/", include("etablissement.urls")),
+    path("api/comptes/", include("comptes.urls")),
+    path("api/etablissement/", include("etablissement.urls")),
+    path("api/dossiers/", include("dossiers.urls")),
 ]
 
 # Pour servir les fichiers uploadés (Images, PDF) en mode développement
