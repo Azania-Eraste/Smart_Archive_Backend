@@ -96,7 +96,7 @@ class Professeur(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
-    matricule = models.CharField(max_length=50, unique=True)
+    matricule = models.CharField(max_length=50, unique=True, null=True)
     # On liera les matières enseignées ici plus tard
 
     def __str__(self):
@@ -107,7 +107,7 @@ class Educateur(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
-    matricule = models.CharField(max_length=50, unique=True)
+    matricule = models.CharField(max_length=50, unique=True, null=True)
     # On liera les classes gérées ici plus tard
 
     def __str__(self):
@@ -118,7 +118,7 @@ class Secrétaire(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
-    matricule = models.CharField(max_length=50, unique=True)
+    matricule = models.CharField(max_length=50, unique=True, null=True)
     bureau = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
@@ -129,7 +129,7 @@ class Directeur(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
-    matricule = models.CharField(max_length=50, unique=True)
+    matricule = models.CharField(max_length=50, unique=True, null=True)
 
     def __str__(self):
         return self.utilisateur.get_full_name()
@@ -139,7 +139,7 @@ class Fondateur(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
-    matricule = models.CharField(max_length=50, unique=True)
+    matricule = models.CharField(max_length=50, unique=True, null=True)
 
     def __str__(self):
         return self.utilisateur.get_full_name()
