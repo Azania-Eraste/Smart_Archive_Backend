@@ -81,21 +81,25 @@ class ParentAdmin(admin.ModelAdmin):
 class ProfesseurAdmin(admin.ModelAdmin):
     list_display = ("utilisateur", "matricule")
     search_fields = ("utilisateur__nom", "matricule")
+    fieldsets = (((None, {"fields": ("utilisateur",)})),)
 
 
 @admin.register(Educateur)
 class EducateurAdmin(admin.ModelAdmin):
     list_display = ("utilisateur", "matricule")
+    fieldsets = (((None, {"fields": ("utilisateur",)})),)
 
 
 @admin.register(Secrétaire)
 class SecretaireAdmin(admin.ModelAdmin):
     list_display = ("utilisateur", "matricule", "bureau")
+    fieldsets = (((None, {"fields": ("utilisateur",)})),)
 
 
 @admin.register(Directeur)
 class DirecteurAdmin(admin.ModelAdmin):
     list_display = ("utilisateur", "matricule")
+    fieldsets = (((None, {"fields": ("utilisateur",)})),)
 
 
 # Enregistrement du modèle Utilisateur personnalisé

@@ -29,10 +29,12 @@ class Niveau(models.Model):
         max_length=50, unique=True
     )  # ex: "6ème", "5ème", "Terminale"
     # L'ordre nous permet de trier les niveaux correctement
-    ordre = models.PositiveIntegerField(default=0)
+    ordre = models.PositiveIntegerField(default=0, unique=True)
 
     class Meta:
         ordering = ["ordre"]  # Toujours trier par ordre (6ème avant 5ème)
+        verbose_name = "Niveau Scolaire"
+        verbose_name_plural = "Niveaux Scolaires"
 
     def __str__(self):
         return self.nom
