@@ -7,6 +7,8 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 
+from .utils import generer_nouveau_matricule
+
 # --- 1. Le Manager pour notre Utilisateur Personnalisé ---
 # Django a besoin d'un "Manager" pour savoir COMMENT créer des utilisateurs et des super-utilisateurs.
 
@@ -108,6 +110,12 @@ class Professeur(models.Model):
     matricule = models.CharField(max_length=50, unique=True)
     # On liera les matières enseignées ici plus tard
 
+    def save(self, *args, **kwargs):
+        # Si le matricule est vide, on le génère
+        if not self.matricule:
+            self.matricule = generer_nouveau_matricule(self, "PRO")
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.utilisateur.get_full_name()
 
@@ -118,6 +126,12 @@ class Educateur(models.Model):
     )
     matricule = models.CharField(max_length=50, unique=True)
     # On liera les classes gérées ici plus tard
+
+    def save(self, *args, **kwargs):
+        # Si le matricule est vide, on le génère
+        if not self.matricule:
+            self.matricule = generer_nouveau_matricule(self, "EDU")
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.utilisateur.get_full_name()
@@ -130,6 +144,12 @@ class Secrétaire(models.Model):
     matricule = models.CharField(max_length=50, unique=True)
     bureau = models.CharField(max_length=100, blank=True)
 
+    def save(self, *args, **kwargs):
+        # Si le matricule est vide, on le génère
+        if not self.matricule:
+            self.matricule = generer_nouveau_matricule(self, "SEC")
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.utilisateur.get_full_name()
 
@@ -140,6 +160,12 @@ class Directeur(models.Model):
     )
     matricule = models.CharField(max_length=50, unique=True)
 
+    def save(self, *args, **kwargs):
+        # Si le matricule est vide, on le génère
+        if not self.matricule:
+            self.matricule = generer_nouveau_matricule(self, "DIR")
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.utilisateur.get_full_name()
 
@@ -149,6 +175,12 @@ class Fondateur(models.Model):
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
     matricule = models.CharField(max_length=50, unique=True)
+
+    def save(self, *args, **kwargs):
+        # Si le matricule est vide, on le génère
+        if not self.matricule:
+            self.matricule = generer_nouveau_matricule(self, "FON")
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.utilisateur.get_full_name()
