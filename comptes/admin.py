@@ -48,7 +48,6 @@ class UtilisateurAdmin(BaseUserAdmin):
                 "fields": (
                     "email",
                     "password",
-                    "confirm_password",
                     "nom",
                     "prenom",
                     "role",
