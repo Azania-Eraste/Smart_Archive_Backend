@@ -6,10 +6,22 @@ from .models import Utilisateur
 
 
 class UtilisateurCreationForm(UserCreationForm):
+    # CORRECTION : On déclare explicitement les champs mot de passe pour que l'Admin les trouve
+    password_1 = forms.CharField(
+        label="Mot de passe",
+        widget=forms.PasswordInput,
+        strip=False,
+        help_text="Le mot de passe doit contenir au moins 8 caractères.",
+    )
+    password_2 = forms.CharField(
+        label="Confirmation du mot de passe",
+        widget=forms.PasswordInput,
+        strip=False,
+        help_text="Entrez le même mot de passe qu'au-dessus pour le vérifier.",
+    )
+
     class Meta:
         model = Utilisateur
-        # On liste les champs qu'on veut voir à la création
-        # Note: Les champs mots de passe sont ajoutés automatiquement par UserCreationForm
         fields = ("email", "nom", "prenom", "role")
 
 
