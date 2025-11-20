@@ -2,6 +2,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
+from .forms import (  # <-- Importez les formulaires
+    UtilisateurChangeForm,
+    UtilisateurCreationForm,
+)
 from .models import (
     Directeur,
     Educateur,
@@ -15,15 +19,18 @@ from .models import (
 
 # --- Personnalisation de l'affichage de l'Utilisateur ---
 class UtilisateurAdmin(BaseUserAdmin):
+    # On lie les formulaires personnalisés
+    form = UtilisateurChangeForm
+    add_form = UtilisateurCreationForm
+
     # Les colonnes affichées dans la liste
     list_display = ("email", "nom", "prenom", "role", "is_active", "is_staff")
     list_filter = ("role", "is_active", "is_staff")
 
-    # Configuration pour que l'email soit utilisé comme identifiant
     ordering = ("email",)
     search_fields = ("email", "nom", "prenom")
 
-    # Configuration du formulaire d'édition (car on n'a pas de champ 'username')
+    # Formulaire d'édition (quand on modifie un user existant)
     fieldsets = (
         (None, {"fields": ("email", "password")}),
         ("Informations Personnelles", {"fields": ("nom", "prenom", "role")}),
@@ -40,6 +47,9 @@ class UtilisateurAdmin(BaseUserAdmin):
             },
         ),
     )
+
+    # Formulaire d'ajout (C'est ici que ça change !)
+    # On utilise 'password_1' et 'password_2' qui sont gérés par le formulaire de création
     add_fieldsets = (
         (
             None,
@@ -47,7 +57,8 @@ class UtilisateurAdmin(BaseUserAdmin):
                 "classes": ("wide",),
                 "fields": (
                     "email",
-                    "password",
+                    "password_1",
+                    "password_2",
                     "nom",
                     "prenom",
                     "role",
