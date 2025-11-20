@@ -107,7 +107,7 @@ class Professeur(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
-    matricule = models.CharField(max_length=50, unique=True)
+    matricule = models.CharField(max_length=50, unique=True, null=True)
     # On liera les matières enseignées ici plus tard
 
     def save(self, *args, **kwargs):
@@ -124,7 +124,7 @@ class Educateur(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
-    matricule = models.CharField(max_length=50, unique=True)
+    matricule = models.CharField(max_length=50, unique=True, null=True)
     # On liera les classes gérées ici plus tard
 
     def save(self, *args, **kwargs):
@@ -141,7 +141,7 @@ class Secrétaire(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
-    matricule = models.CharField(max_length=50, unique=True)
+    matricule = models.CharField(max_length=50, unique=True, null=True)
     bureau = models.CharField(max_length=100, blank=True)
 
     def save(self, *args, **kwargs):
@@ -158,7 +158,7 @@ class Directeur(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
-    matricule = models.CharField(max_length=50, unique=True)
+    matricule = models.CharField(max_length=50, unique=True, null=True)
 
     def save(self, *args, **kwargs):
         # Si le matricule est vide, on le génère
@@ -174,7 +174,7 @@ class Fondateur(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, on_delete=models.CASCADE, primary_key=True
     )
-    matricule = models.CharField(max_length=50, unique=True)
+    matricule = models.CharField(max_length=50, unique=True, null=True)
 
     def save(self, *args, **kwargs):
         # Si le matricule est vide, on le génère
