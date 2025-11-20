@@ -48,7 +48,6 @@ class UtilisateurAdmin(BaseUserAdmin):
                 "fields": (
                     "email",
                     "password",
-                    "confirm_password",
                     "nom",
                     "prenom",
                     "role",
@@ -63,7 +62,7 @@ class UtilisateurAdmin(BaseUserAdmin):
 
 @admin.register(Parent)
 class ParentAdmin(admin.ModelAdmin):
-    list_display = ("utilisateur", "telephone", "ville", "pays")
+    list_display = ("utilisateur", "telephone")
     search_fields = ("utilisateur__nom", "utilisateur__prenom", "telephone")
 
 
