@@ -22,7 +22,7 @@ class EleveViewSet(viewsets.ModelViewSet):
     ]
 
     # Filtres exacts (ex: ?classe=1&statut=ACTIF)
-    filterset_fields = ["classe", "statut", "annee_scolaire"]
+    filterset_fields = ["classe", "statut"]
 
     # Recherche texte (ex: ?search=Kouadio)
     search_fields = ["nom", "prenom", "matricule"]
