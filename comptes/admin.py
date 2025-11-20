@@ -57,8 +57,8 @@ class UtilisateurAdmin(BaseUserAdmin):
                 "classes": ("wide",),
                 "fields": (
                     "email",
-                    "password_1",
-                    "password_2",
+                    "password1",
+                    "password2",
                     "nom",
                     "prenom",
                     "role",

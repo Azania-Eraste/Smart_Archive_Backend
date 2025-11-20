@@ -7,13 +7,13 @@ from .models import Utilisateur
 
 class UtilisateurCreationForm(UserCreationForm):
     # CORRECTION : On déclare explicitement les champs mot de passe pour que l'Admin les trouve
-    password_1 = forms.CharField(
+    password1 = forms.CharField(
         label="Mot de passe",
         widget=forms.PasswordInput,
         strip=False,
         help_text="Le mot de passe doit contenir au moins 8 caractères.",
     )
-    password_2 = forms.CharField(
+    password2 = forms.CharField(
         label="Confirmation du mot de passe",
         widget=forms.PasswordInput,
         strip=False,
