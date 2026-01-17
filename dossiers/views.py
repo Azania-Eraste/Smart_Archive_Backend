@@ -18,7 +18,7 @@ from .serializers import DocumentSerializer, EleveSerializer
 
 class EleveViewSet(viewsets.ModelViewSet):
     queryset = Eleve.objects.all()
-    srializer_class = EleveSerializer
+    serializer_class = EleveSerializer
     permission_classes = [IsAuthenticated]
 
     # --- FILTRES ET RECHERCHE ---
